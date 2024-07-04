@@ -342,8 +342,8 @@ return [
                     'url' => 'posts',
                 ],
                 [
-                    'text' => 'Data Fakultas',
-                    'url' => 'fakultas',
+                    'text' => 'Sekolah',
+                    'url' => 'sekolah',
                 ]
             ],
         ],

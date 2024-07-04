@@ -15,7 +15,7 @@ use App\Http\Controllers\ProgramStudiController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+ 
 
 //route resource
 Route::resource('/posts', \App\Http\Controllers\ProgramStudiController::class);
@@ -35,3 +35,8 @@ Route::post('/posts', [ProgramStudiController::class, 'store'])->name('posts.sto
 Route::get('/posts/{id}/edit', [ProgramStudiController::class, 'edit'])->name('posts.edit');
 Route::put('/posts/{id}', [ProgramStudiController::class, 'update'])->name('posts.update');
 Route::delete('/posts/{id}', [ProgramStudiController::class, 'destroy'])->name('posts.destroy');
+Route::get('/sekolah', [App\Http\Controllers\SekolahController::class,
+'index']);
+Route::get('/fetch-sekolah', [App\Http\Controllers\SekolahController::class,
+'fetchSekolah']);
+
