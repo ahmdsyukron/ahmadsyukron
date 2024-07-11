@@ -1,60 +1,73 @@
 @extends('adminlte::page')
 
-@section('title', 'Program Studi')
-
-@section('css')
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
- <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
-@stop
+@section('title', 'Data Sekolah')
 
 @section('content_header')
-    <h1 class="px-3 fw-bold">Data Program Studi</h1>
+    <h1>DATA SEKOLAH</h1>
 @stop
 
 @section('content')
-    <body>
- <div class="container mt-5">
- <h1 class="mb-4">Data Sekolah di Indonesia</h1>
- <button id="fetchData" class="btn btn-primary mb-4">Fetch Data 
-Sekolah</button>
- <table class="table table-bordered">
- <thead>
- <tr>
- <th>No</th>
- <th>Nama Sekolah</th>
- <th>Alamat</th>
- <th>Provinsi</th>
- </tr>
- </thead>
- <tbody id="sekolahData">
- </tbody>
- </table>
- </div>
- <script src="{{ mix('js/app.js') }}"></script>
- <script>
- document.getElementById('fetchData').addEventListener('click', 
-function() {
- fetch('/fetch-sekolah')
- .then(response => response.json())
- .then(data => {
- let sekolahData = document.getElementById('sekolahData');
- sekolahData.innerHTML = '';
- data.sekolah.forEach((sekolah, index) => {
- sekolahData.innerHTML += `
- <tr>
- <td>${index + 1}</td>
- <td>${sekolah.nama}</td>
-<td>${sekolah.alamat}</td>
-<td>${sekolah.provinsi}</td>
- </tr>
- `;
- });
- });
- });
- </script>
-</body>
+<div class="container mt-5">
+<button id="fetchData" class="btn btn-primary mb-4">Fetch Data Sekolah</button>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Nama Sekolah</th>
+            <th scope="col">Alamat</th>
+            <th scope="col">Provinsi</th>
+            <th scope="col">Kabupaten/Kota</th>
+            <th scope="col">Kecamatan</th>
+        </tr>
+    </thead>
+
+    <tbody id="sekolahData">
+
+    </tbody>
+</table>
+</div>
+    <script>
+//         document.getElementById('fetchData').addEventListener('click', function() {
+//     fetch('/fetch-sekolah')
+//         .then(response => response.json())
+//         .then(data => {
+//             let sekolahData = document.getElementById('sekolahData');
+//             sekolahData.innerHTML = '';
+//             data.dataSekolah.forEach((sekolah, index) => {
+//                 sekolahData.innerHTML += `
+//                     <tr>
+//                         <td>${index + 1}</td>
+//                         <td>${sekolah.sekolah}</td>
+//                         <td>${sekolah.alamat_jalan}</td>
+//                         <td>${sekolah.propinsi}</td>
+//                         <td>${sekolah.kabupaten_kota}</td>
+//                         <td>${sekolah.kecamatan}</td>
+//                     </tr>
+//                 `;
+//             });
+//         });
+// });
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('/fetch-sekolah')
+        .then(response => response.json())
+        .then(data => {
+            let sekolahData = document.getElementById('sekolahData');
+            sekolahData.innerHTML = '';
+            data.dataSekolah.forEach((sekolah, index) => {
+                sekolahData.innerHTML += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${sekolah.sekolah}</td>
+                        <td>${sekolah.alamat_jalan}</td>
+                        <td>${sekolah.propinsi}</td>
+                        <td>${sekolah.kabupaten_kota}</td>
+                        <td>${sekolah.kecamatan}</td>
+                    </tr>
+                `;
+            });
+        });
+});
+    </script>
 @stop
 
 @section('css')
@@ -63,21 +76,5 @@ function() {
 @stop
 
 @section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-    <script>
-        //message with toastr
-        @if (session()->has('success'))
-
-            toastr.success('{{ session('success') }}', 'BERHASIL!');
-        @elseif (session()->has('error'))
-
-            toastr.error('{{ session('error') }}', 'GAGAL!');
-        @endif
-    </script>
-    <script>
-        console.log("Hi, I'm using the Laravel-AdminLTE package!");
-    </script>
+    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
 @stop

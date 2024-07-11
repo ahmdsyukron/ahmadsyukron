@@ -11,7 +11,7 @@ class SekolahController extends Controller
  }
  public function fetchSekolah()
  {
- $response = Http::get('https://api-sekolah-indonesia.vercel.app');
+ $response = Http::get('https://api-sekolah-indonesia.vercel.app/sekolah');
  return response()->json($response->json());
  }
 }
